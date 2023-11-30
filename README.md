@@ -1,5 +1,7 @@
 # MindCORE workshop: Introduction to mixed-effects models in Julia
 
+*3:00-4:30pm December 1, 2023*
+
 ## Abstract:
 
 > Mixed-effects regression models have been a popular choice of statistical analysis in experimental psychology and linguistics research. While they’ve historically been developed and taught in R (namely, via the lme4 package), a newer implementation in the Julia programming language called MixedModels.jl has emerged and matured as a successor. The MixedModels.jl Julia library preserves much of the familiar interface from lme4, while offering many advancements in the complexity and speed of fitting mixed-effects models.
