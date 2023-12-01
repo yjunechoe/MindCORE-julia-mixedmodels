@@ -1,6 +1,6 @@
 # MindCORE workshop: Introduction to mixed-effects models in Julia
 
-*3:00-4:30pm December 1, 2023*
+*3:15-4:30pm December 1, 2023*
 
 ## Abstract:
 
