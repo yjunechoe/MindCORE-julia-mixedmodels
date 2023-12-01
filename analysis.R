@@ -5,6 +5,7 @@ library(tidyverse)
 experiment <- read_csv("https://raw.githubusercontent.com/yjunechoe/Semantic-Persistence/master/processed.csv")
 norming <- read_csv("https://raw.githubusercontent.com/yjunechoe/Semantic-Persistence/master/data/Item_norms.csv")
 
+set.seed(2)
 speeded_comprehension <- experiment %>% 
   filter(Type == "Critical") %>% 
   select(Item, PitchAccent = Cond, Subject, Accuracy) %>% 
@@ -52,6 +53,10 @@ sjPlot::tab_model(julia_model)
 ## Ex: plot predictions
 marginaleffects::plot_predictions(
   julia_model,
-  condition = list(SemanticFit = -2:2, TransitivityBias = -2:2, PitchAccent = unique),
+  condition = list(
+    SemanticFit = -2:2,
+    TransitivityBias = -2:2,
+    PitchAccent = unique
+  ),
 ) +
   scale_y_continuous(limits = 0:1)

@@ -1,14 +1,16 @@
 # Setup
-## Decimal printing options
-using Printf
-Base.show(io::IO, f::Float64) = @printf(io, "%.3f", f)
 
 ## Load packages
 using CSV
 using DataFrames
 using MixedModels
 
+# Read data
 speeded_comprehension = CSV.read("speeded_comprehension.csv", DataFrame)
+
+## Decimal printing options
+using Printf
+Base.show(io::IO, f::Float64) = @printf(io, "%.3f", f)
 
 # 1) Model fitting ----
 
@@ -29,12 +31,10 @@ model_max = fit(
                       (1 + PitchAccent + SemanticFit + TransitivityBias | Subject) +
                       (1 + PitchAccent | Item)),
   speeded_comprehension,
-  Bernoulli();
-  progress = false
+  Bernoulli()
 )
 issingular(model_max)
 VarCorr(model_max)
-MixedModels.rePCA(model_max)
 
 ## Model with best RE
 model_final = fit(
@@ -80,9 +80,10 @@ MixedModels.rePCA(model_interaction_max)
   MixedModel, fm_max, speeded_comprehension, Bernoulli();
   fast=true # slightly less accurate, but useful for model selection
 );
-deviance(model_interaction_max)
 deviance(model_interaction_max_fast)
+deviance(model_interaction_max)
 MixedModels.rePCA(model_interaction_max_fast)
+VarCorr(model_interaction_max_fast)
 
 # 2) Model selection & diagnostics ----
 
